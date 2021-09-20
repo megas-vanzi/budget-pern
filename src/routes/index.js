@@ -7,7 +7,7 @@ const {
   getExpenseById,
   changeExpenseById,
   deleteExpenseById,
-} = require("../controllers/index.controller");
+} = require("../controllers/controllers");
 
 router.post("/expense", createExpense);
 router.get("/expense", getExpense);
