@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routes
-app.use(require("./src/routes/index"));
+app.use(require("./routes/index"));
 
 app.listen(port, () => {
   console.log(`Server started on ${port}`);
