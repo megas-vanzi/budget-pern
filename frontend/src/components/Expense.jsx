@@ -1,4 +1,5 @@
 import React from "react";
+import ExpenseItems from "./ExpenseItems";
 
 const Expense = () => {
   const data = [
@@ -43,7 +44,19 @@ const Expense = () => {
             <td>Actions</td>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {data.map(({ id, concept, ammount, date }) => {
+            return (
+              <ExpenseItems
+                key={id}
+                id={id}
+                con={concept}
+                value={ammount}
+                date={date}
+              />
+            );
+          })}
+        </tbody>
       </table>
     </>
   );
