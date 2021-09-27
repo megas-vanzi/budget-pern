@@ -1,35 +1,9 @@
 import React from "react";
+import { useFetchData } from "../hooks/useFetchData";
 import ExpenseItems from "./ExpenseItems";
 
 const Expense = () => {
-  const data = [
-    {
-      id: 3,
-      concept: "Some random expense",
-      ammount: "$ 544,00",
-      date: "2021-08-10T03:00:00.000Z",
-    },
-    {
-      id: 6,
-      concept: "Some random expense",
-      ammount: "$ 54,40",
-      date: "2021-08-10T03:00:00.000Z",
-    },
-    {
-      id: 7,
-      concept: "Some random expense",
-      ammount: "$ 58,40",
-      date: "2021-08-10T03:00:00.000Z",
-    },
-    {
-      id: 4,
-      concept: "Another random expense",
-      ammount: "$ 534,35",
-      date: "2021-08-11T03:00:00.000Z",
-    },
-  ];
-
-  console.log(data);
+  const [expenses] = useFetchData();
 
   return (
     <>
@@ -45,7 +19,7 @@ const Expense = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map(({ id, concept, ammount, date }) => {
+          {expenses.map(({ id, concept, ammount, date }) => {
             return (
               <ExpenseItems
                 key={id}
