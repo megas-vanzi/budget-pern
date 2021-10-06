@@ -9,7 +9,8 @@ const ExpenseItems = ({ id, con, value, date }) => {
         <td>{con}</td>
         <td>{value}</td>
         <td>{date}</td>
-        <td>Edit - Delete</td>
+        <td><ButtonEdit />
+            <ButtonDelete /></td>
       </tr>
     </>
   );

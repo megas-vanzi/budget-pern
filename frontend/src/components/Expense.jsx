@@ -19,11 +19,11 @@ const Expense = () => {
           </tr>
         </thead>
         <tbody>
-          {expenses.map(({ id, concept, ammount, date }) => {
+          {expenses.map(({ id_expense, concept, ammount, date }) => {
             return (
               <ExpenseItems
-                key={id}
-                id={id}
+                key={id_expense}
+                id={id_expense}
                 con={concept}
                 value={ammount}
                 date={date}
