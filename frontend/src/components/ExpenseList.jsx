@@ -2,7 +2,7 @@ import React from "react";
 import { useFetchData } from "../hooks/useFetchData";
 import ExpenseItems from "./ExpenseItems";
 
-const Expense = () => {
+const ExpenseList = () => {
   const [expenses] = useFetchData();
 
   return (
@@ -36,4 +36,4 @@ const Expense = () => {
   );
 };
 
-export default Expense;
+export default ExpenseList;
