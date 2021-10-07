@@ -1,15 +1,12 @@
 import "./App.css";
-import Expense from "./components/Expense";
-import FormControl from "./components/FormControl";
+import Home from "./components/Home";
+import Abm from "./components/Abm";
 
 function App() {
   return (
     <div className="App">
-      <FormControl />
-      <Expense />
-      <header className="App-header">
-        <p>Starting Budget App in React</p>
-      </header>
+      <Home />
+      <Abm />
     </div>
   );
 }
