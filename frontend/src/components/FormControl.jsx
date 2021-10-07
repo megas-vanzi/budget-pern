@@ -15,13 +15,16 @@ class FormControl extends Component {
     const { value } = this.state
     return (
       <Form>
-        <Form.Group widths='equal'>
-          <Form.Select
+        <Form.Select
             fluid
             label='Type'
             options={options}
             placeholder='Ingreso/Egreso'
+            className='five wide field'
           />
+
+        <Form.Group widths='equal'>
+          
           <Form.Input fluid label='Date' placeholder='yyyy-mm-dd' />
           <Form.Input fluid label='Ammount' placeholder='How much?' />
           

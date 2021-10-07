@@ -5,10 +5,14 @@ import FormControl from "./FormControl";
 function Abm() {
   return (
     <>
-      <h1>ABM</h1>
-      <FormControl />
-      <ExpenseList />
-      <p>Shaping Budget App in React</p>
+      <h1 align="center">ABM</h1>
+      <div className='ui padded text container segment'>
+        <FormControl />
+      </div>
+      <div className='ui very padded text segment'>
+        <ExpenseList />
+        <p>Shaping Budget App in React</p>
+      </div>
     </>
   );
 }

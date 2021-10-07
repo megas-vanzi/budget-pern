@@ -8,7 +8,7 @@ const ButtonDelete = () => (
         <Icon name='window close' />
       </Button>
       <Label as='a' basic color='red' pointing='left'>
-        Delete
+        Del
       </Label>
     </Button>
   </>

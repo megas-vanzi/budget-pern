@@ -2,7 +2,7 @@ import React from "react";
 
 function Home() {
   return (
-    <>
+    <div className='ui padded text container segment'>
       <h1>Home</h1> 
       <h3>Balance</h3>
       <ol>
@@ -19,7 +19,7 @@ function Home() {
       </ol>
 
       <p>Shaping Budget App in React</p>
-    </>
+    </div>
   );
 }
 
