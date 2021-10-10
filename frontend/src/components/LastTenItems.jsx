@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 const LastTenItems = ({ type, con, value, date }) => {
   return (
     <>
-      <tr>
+      <tr
+        style={
+          type === "ingreso"
+            ? { backgroundColor: "#DEEEED" }
+            : { backgroundColor: "#EEDEDE" }
+        }
+      >
         <td>{type}</td>
         <td>{con}</td>
         <td>{value}</td>
