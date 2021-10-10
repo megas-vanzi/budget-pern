@@ -1,15 +1,26 @@
-import React from "react";
-import { useFetchData } from "../hooks/useFetchData";
+import React, { useEffect, useState } from "react";
 import ExpenseItems from "./ExpenseItems";
+import Axios from "axios";
 
 const ExpenseList = () => {
-  const [expenses] = useFetchData();
+  const [expenses, setExpenses] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await Axios.get("http://localhost:4000/expense/");
+
+      if (data.results) {
+        setExpenses(data.results);
+      } else {
+        setExpenses(data);
+      }
+    })();
+  }, [expenses]);
 
   return (
     <>
-      <table>
+      <table className="ui very basic right aligned table">
         <thead>
-          Expense Table Render
           <tr>
             <td>Id</td>
             <td>Concept</td>
