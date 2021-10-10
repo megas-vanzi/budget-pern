@@ -10,16 +10,16 @@ const pool = new Pool({
 
 // INSERT
 const createExpense = async (req, res) => {
-  const { concept, ammount, date, expenseType } = req.body;
+  const { concept, amount, date, expenseType } = req.body;
   const response = await pool.query(
-    "INSERT INTO expense (type, date, ammount, concept) VALUES ($1, $2, $3, $4)",
-    [expenseType, date, ammount, concept]
+    "INSERT INTO expense (type, date, amount, concept) VALUES ($1, $2, $3, $4)",
+    [expenseType, date, amount, concept]
   );
   console.log(response);
   res.json({
     message: "Expense Added Succesfully",
     body: {
-      expense: { date, expenseType, concept, ammount, date },
+      expense: { date, expenseType, concept, amount, date },
     },
   });
 };
@@ -32,19 +32,25 @@ const getExpense = async (req, res) => {
 };
 
 const getLastTen = async (req, res) => {
-  const response = await pool.query("SELECT * FROM expense ORDER BY date DESC limit 10");
+  const response = await pool.query(
+    "SELECT * FROM expense ORDER BY date DESC limit 10"
+  );
   res.json(response.rows);
   // res.status(200)
 };
 
 const getExpenseIn = async (req, res) => {
-  const response = await pool.query("SELECT * FROM expense where type='ingreso'");
+  const response = await pool.query(
+    "SELECT * FROM expense where type='ingreso'"
+  );
   res.json(response.rows);
   // res.status(200)
 };
 
 const getExpenseOut = async (req, res) => {
-  const response = await pool.query("SELECT * FROM expense where type='egreso'");
+  const response = await pool.query(
+    "SELECT * FROM expense where type='egreso'"
+  );
   res.json(response.rows);
   // res.status(200)
 };
@@ -60,10 +66,10 @@ const getExpenseById = async (req, res) => {
 // UPDATE
 const changeExpenseById = async (req, res) => {
   const id = req.params.id;
-  const { concept, ammount, date } = req.body;
+  const { concept, amount, date } = req.body;
   const response = await pool.query(
-    "UPDATE expense SET concept = $1, ammount = $2, date = $3 WHERE id = $4",
-    [concept, ammount, date, id]
+    "UPDATE expense SET concept = $1, amount = $2, date = $3 WHERE id = $4",
+    [concept, amount, date, id]
   );
   res.send(`Expense ${id} updated`);
   console.log(response);

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { numberFormat } from "../helpers/numberFormat";
 
 const LastTenItems = ({ type, con, value, date }) => {
   return (
@@ -12,9 +13,9 @@ const LastTenItems = ({ type, con, value, date }) => {
         }
       >
         <td>{type}</td>
+        <td>{date.slice(0, -14)}</td>
+        <td>{numberFormat(value)}</td>
         <td>{con}</td>
-        <td>{value}</td>
-        <td>{date}</td>
       </tr>
     </>
   );

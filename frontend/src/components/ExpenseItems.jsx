@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import ButtonEdit from "./ButtonEdit";
 import ButtonDelete from "./ButtonDelete";
+import { numberFormat } from "../helpers/numberFormat";
 
 const ExpenseItems = ({ id, con, value, date }) => {
   return (
     <>
       <tr>
-        <td>{id}</td>
+        <td>{date.slice(0, -14)}</td>
         <td>{con}</td>
-        <td>{value}</td>
-        <td>{date}</td>
+        <td>{numberFormat(value)}</td>
         <td>
           <ButtonEdit />
           <ButtonDelete />

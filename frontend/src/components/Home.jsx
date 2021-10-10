@@ -1,16 +1,20 @@
 import React from "react";
+import Balance from "./Balance";
 import LastTenList from "./LastTenList";
 
 function Home() {
   return (
-    <div className="ui padded text container segment">
-      <h1>Home</h1>
-      <h3>Balance</h3>
+    <>
+      <h1 align="center">Home</h1>
 
-      <LastTenList query="LastTen" />
+      <div className="ui padded text container segment">
+        <Balance />
 
-      <p>Shaping Budget App in React</p>
-    </div>
+        <LastTenList query="LastTen" />
+
+        <p>Shaping Budget App in React</p>
+      </div>
+    </>
   );
 }
 

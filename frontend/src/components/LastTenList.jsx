@@ -20,22 +20,23 @@ const LastTenList = ({ query }) => {
 
   return (
     <>
-      <table className="ui very basic right aligned table">
+      <table className="ui very basic center aligned table">
         <thead>
           <tr>
             <td>Type</td>
-            <td>Concept</td>
-            <td>Ammount</td>
             <td>Date</td>
+            <td>Amount</td>
+            <td>Concept</td>
           </tr>
         </thead>
         <tbody>
-          {expenses.map(({ type, concept, ammount, date }) => {
+          {expenses.map(({ id_expense, type, concept, amount, date }) => {
             return (
               <LastTenItems
+                key={id_expense}
                 type={type}
                 con={concept}
-                value={ammount}
+                value={amount}
                 date={date}
               />
             );

@@ -64,7 +64,7 @@ function InputForm({ expenseType }) {
             fluid
             label="Date"
             name="date"
-            placeholder="yyyy-mm-dd"
+            placeholder="yyyy-mm-dd <> dd/mm/yyyy"
             onChange={formik.handleChange}
             error={formik.errors.date}
           />

@@ -20,24 +20,23 @@ const ExpenseList = ({ query }) => {
 
   return (
     <>
-      <table className="ui very basic right aligned table">
+      <table className="ui very basic center aligned table">
         <thead>
           <tr>
-            <td>Id</td>
-            <td>Concept</td>
-            <td>Ammount</td>
             <td>Date</td>
+            <td>Concept</td>
+            <td>Amount</td>
             <td>Actions</td>
           </tr>
         </thead>
         <tbody>
-          {expenses.map(({ id_expense, concept, ammount, date }) => {
+          {expenses.map(({ id_expense, concept, amount, date }) => {
             return (
               <ExpenseItems
                 key={id_expense}
                 id={id_expense}
                 con={concept}
-                value={ammount}
+                value={amount}
                 date={date}
               />
             );
