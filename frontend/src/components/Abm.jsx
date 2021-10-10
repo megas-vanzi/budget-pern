@@ -1,19 +1,21 @@
 import React from "react";
-import ExpenseList from "./ExpenseList";
-import FormControl from "./FormControl";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import SubNavbar from "./SubNavbar";
+import Ingresos from "./Ingresos";
+import Egresos from "./Egresos";
 
 function Abm() {
   return (
-    <>
+    <BrowserRouter>
       <h1 align="center">ABM</h1>
-      <div className='ui padded text container segment'>
-        <FormControl />
+      <div className="Abm">
+        <SubNavbar />
+        <Switch>
+          <Route path="/ingresos" component={Ingresos} />
+          <Route path="/egresos" component={Egresos} />
+        </Switch>
       </div>
-      <div className='ui very padded text segment'>
-        <ExpenseList />
-        <p>Shaping Budget App in React</p>
-      </div>
-    </>
+    </BrowserRouter>
   );
 }
 
