@@ -8,7 +8,7 @@ function Ingresos() {
     <>
       <h2 align="center">Ingresos</h2>
       <div className="ui text container">
-        <InputForm />
+        <InputForm expenseType="ingreso" />
       </div>
       <div className="ui very padded text segment">
         <ExpenseList />

@@ -8,7 +8,7 @@ function Egresos() {
     <>
       <h2 align="center">Egresos</h2>
       <div className="ui text container">
-        <InputForm />
+        <InputForm expenseType="egreso" />
       </div>
       <div className="ui very padded text segment">
         <ExpenseList />
