@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ButtonEdit from "./ButtonEdit";
+import ButtonDelete from "./ButtonDelete";
 
 const ExpenseItems = ({ id, con, value, date }) => {
   return (
@@ -9,8 +11,10 @@ const ExpenseItems = ({ id, con, value, date }) => {
         <td>{con}</td>
         <td>{value}</td>
         <td>{date}</td>
-        <td><ButtonEdit />
-            <ButtonDelete /></td>
+        <td>
+          <ButtonEdit />
+          <ButtonDelete />
+        </td>
       </tr>
     </>
   );
