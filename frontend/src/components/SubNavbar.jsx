@@ -2,15 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SubNavbar = () => (
-  <nav className="ui raised very padded segment">
-    <div className="ui text container">
-      <button className="ui button">
-        <Link to="/ingresos">Ingresos</Link>
-      </button>
+  <nav className="ui github padded text container segment">
+    <div className="ui padded centered grid">
+      <div className="ui six wide field">
+        <button className="ui inverted teal button">
+          <Link to="/ingresos">Ingresos</Link>
+        </button>
+      </div>
 
-      <button className="ui button">
-        <Link to="/egresos">Egresos</Link>
-      </button>
+      <div className="ui six wide field">
+        <button className="ui inverted teal  button">
+          <Link to="/egresos">Egresos</Link>
+        </button>
+      </div>
     </div>
   </nav>
 );
