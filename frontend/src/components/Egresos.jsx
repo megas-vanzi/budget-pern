@@ -11,7 +11,7 @@ function Egresos() {
         <InputForm expenseType="egreso" />
       </div>
       <div className="ui very padded text segment">
-        <ExpenseList />
+        <ExpenseList query="Out" />
         <p>Shaping Budget App in React</p>
       </div>
       <div className="ui padded text container segment">

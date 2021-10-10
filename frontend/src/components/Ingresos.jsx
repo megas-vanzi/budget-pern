@@ -11,7 +11,7 @@ function Ingresos() {
         <InputForm expenseType="ingreso" />
       </div>
       <div className="ui very padded text segment">
-        <ExpenseList />
+        <ExpenseList query="In" />
         <p>Shaping Budget App in React</p>
       </div>
       <div className="ui padded text container segment">

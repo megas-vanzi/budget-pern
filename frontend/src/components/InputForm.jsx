@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Form, Button } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Axios from "axios";
+import useInsertData from "../hooks/useInsertData";
 
 function InputForm({ expenseType }) {
+  const [submit, setSubmit] = useState([]);
+
   const [tipo, setTipo] = useState(expenseType);
   //used useState, if not expenseType would have,
   //instead of a string initialValue, an object
@@ -24,6 +28,30 @@ function InputForm({ expenseType }) {
     }),
     onSubmit: (formData) => {
       console.log(formData);
+      const insertData = async (expense, date, ammount, concept) => {
+        try {
+          const { data } = await Axios.post(
+            `http://localhost:4000/expense`,
+            {
+              expense,
+              date,
+              ammount,
+              concept,
+            } // date, ammount, concept
+          );
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      insertData(
+        submit.expenseType,
+        submit.date,
+        submit.ammount,
+        submit.concept
+      );
+      setSubmit(formData);
     },
   });
 

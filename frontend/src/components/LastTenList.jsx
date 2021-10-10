@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ExpenseItems from "./ExpenseItems";
+import LastTenItems from "./LastTenItems";
 import Axios from "axios";
 
-const ExpenseList = ({ query }) => {
+const LastTenList = ({ query }) => {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
@@ -23,19 +23,17 @@ const ExpenseList = ({ query }) => {
       <table className="ui very basic right aligned table">
         <thead>
           <tr>
-            <td>Id</td>
+            <td>Type</td>
             <td>Concept</td>
             <td>Ammount</td>
             <td>Date</td>
-            <td>Actions</td>
           </tr>
         </thead>
         <tbody>
-          {expenses.map(({ id_expense, concept, ammount, date }) => {
+          {expenses.map(({ type, concept, ammount, date }) => {
             return (
-              <ExpenseItems
-                key={id_expense}
-                id={id_expense}
+              <LastTenItems
+                type={type}
                 con={concept}
                 value={ammount}
                 date={date}
@@ -48,8 +46,8 @@ const ExpenseList = ({ query }) => {
   );
 };
 
-ExpenseList.propTypes = {
+LastTenList.propTypes = {
   query: PropTypes.string,
 };
 
-export default ExpenseList;
+export default LastTenList;
