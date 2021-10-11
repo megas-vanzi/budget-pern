@@ -1,10 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Label } from "semantic-ui-react";
+import Axios from "axios";
 
 const ButtonDelete = ({ id }) => {
   const clickDelete = () => {
     console.log(`click delete ${id}`);
+    fetchData(id);
+  };
+
+  const fetchData = async (id) => {
+    try {
+      const { data } = await Axios.delete(
+        `http://localhost:4000/expense/${id}`
+      ); // localhost 4000  id de la expense a deletear
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

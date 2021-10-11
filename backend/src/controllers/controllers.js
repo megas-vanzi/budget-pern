@@ -87,9 +87,10 @@ const changeExpenseById = async (req, res) => {
 const deleteExpenseById = async (req, res) => {
   try {
     const id = req.params.id;
-    const response = await pool.query("DELETE FROM expense WHERE id = $1", [
-      id,
-    ]);
+    const response = await pool.query(
+      "DELETE FROM expense WHERE id_expense = $1",
+      [id]
+    );
     res.send(`Expense ${id} deleted`);
     console.log(response);
   } catch (err) {
