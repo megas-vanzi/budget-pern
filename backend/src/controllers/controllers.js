@@ -73,7 +73,7 @@ const changeExpenseById = async (req, res) => {
     const id = req.params.id;
     const { concept, amount, date } = req.body;
     const response = await pool.query(
-      "UPDATE expense SET concept = $1, amount = $2, date = $3 WHERE id = $4",
+      "UPDATE expense SET concept = $1, amount = $2, date = $3 WHERE id_expense = $4",
       [concept, amount, date, id]
     );
     res.send(`Expense ${id} updated`);

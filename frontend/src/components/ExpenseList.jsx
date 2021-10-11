@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ExpenseItems from "./ExpenseItems";
+import ButtonEdit from "./ButtonEdit";
+import ButtonDelete from "./ButtonDelete";
+import { numberFormat } from "../helpers/numberFormat";
 import Axios from "axios";
 
-const ExpenseList = ({ query }) => {
+const ExpenseList = ({
+  query,
+  setEditing,
+  setEditingId,
+  setEditingDate,
+  setEditingAmount,
+  setEditingConcept,
+}) => {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
@@ -32,13 +41,25 @@ const ExpenseList = ({ query }) => {
         <tbody>
           {expenses.map(({ id_expense, concept, amount, date }) => {
             return (
-              <ExpenseItems
-                key={id_expense}
-                id={id_expense}
-                con={concept}
-                value={amount}
-                date={date}
-              />
+              <tr>
+                <td>{date.slice(0, -14)}</td>
+                <td>{concept}</td>
+                <td>{numberFormat(amount)}</td>
+                <td>
+                  <div
+                    onClick={() => {
+                      setEditing(true);
+                      setEditingId(id_expense);
+                      setEditingDate(date);
+                      setEditingAmount(amount);
+                      setEditingConcept(concept);
+                    }}
+                  >
+                    <ButtonEdit id={id_expense} />
+                  </div>
+                  <ButtonDelete id={id_expense} />
+                </td>
+              </tr>
             );
           })}
         </tbody>

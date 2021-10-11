@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import EditForm from "./EditForm";
 import ExpenseList from "./ExpenseList";
 import InputForm from "./InputForm";
 
 function Ingresos() {
+  const [editing, setEditing] = useState(false);
+  const [editingId, setEditingId] = useState("");
+  const [editingDate, setEditingDate] = useState("");
+  const [editingAmount, setEditingAmount] = useState("");
+  const [editingConcept, setEditingConcept] = useState("");
+
   return (
     <>
       <h2 align="center">Ingresos</h2>
       <div className="ui text container">
         <InputForm expenseType="ingreso" />
       </div>
+
       <div className="ui very padded text segment">
-        <ExpenseList query="In" />
-        <p>Shaping Budget App in React</p>
+        <ExpenseList
+          setEditing={setEditing}
+          setEditingId={setEditingId}
+          setEditingDate={setEditingDate}
+          setEditingAmount={setEditingAmount}
+          setEditingConcept={setEditingConcept}
+          query="In"
+        />
+        <p id="shaping">Shaping Budget App in React</p>
       </div>
+
       <div className="ui padded text container segment">
-        <EditForm />
+        <EditForm
+          id_expense={editingId}
+          date={editingDate}
+          amount={editingAmount}
+          concept={editingConcept}
+          setEditing={setEditing}
+          setEditingId={setEditingId}
+          setEditingDate={setEditingDate}
+          setEditingAmount={setEditingAmount}
+          setEditingConcept={setEditingConcept}
+        />
       </div>
     </>
   );
