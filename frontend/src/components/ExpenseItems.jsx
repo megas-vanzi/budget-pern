@@ -12,8 +12,8 @@ const ExpenseItems = ({ id, con, value, date }) => {
         <td>{con}</td>
         <td>{numberFormat(value)}</td>
         <td>
-          <ButtonEdit />
-          <ButtonDelete />
+          <ButtonEdit id={id} />
+          <ButtonDelete id={id} />
         </td>
       </tr>
     </>

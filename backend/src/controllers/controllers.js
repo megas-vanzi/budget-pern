@@ -20,7 +20,7 @@ const createExpense = async (req, res) => {
     res.json({
       message: "Expense Added Succesfully",
       body: {
-        expense: { expense, concept, amount, date },
+        operation: { expense, concept, amount, date },
       },
     });
   } catch (err) {
@@ -69,22 +69,32 @@ const getExpenseById = async (req, res) => {
 
 // UPDATE
 const changeExpenseById = async (req, res) => {
-  const id = req.params.id;
-  const { concept, amount, date } = req.body;
-  const response = await pool.query(
-    "UPDATE expense SET concept = $1, amount = $2, date = $3 WHERE id = $4",
-    [concept, amount, date, id]
-  );
-  res.send(`Expense ${id} updated`);
-  console.log(response);
+  try {
+    const id = req.params.id;
+    const { concept, amount, date } = req.body;
+    const response = await pool.query(
+      "UPDATE expense SET concept = $1, amount = $2, date = $3 WHERE id = $4",
+      [concept, amount, date, id]
+    );
+    res.send(`Expense ${id} updated`);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // DELETE
 const deleteExpenseById = async (req, res) => {
-  const id = req.params.id;
-  const response = await pool.query("DELETE FROM expense WHERE id = $1", [id]);
-  res.send(`Expense ${id} deleted`);
-  console.log(response);
+  try {
+    const id = req.params.id;
+    const response = await pool.query("DELETE FROM expense WHERE id = $1", [
+      id,
+    ]);
+    res.send(`Expense ${id} deleted`);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = {

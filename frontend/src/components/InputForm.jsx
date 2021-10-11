@@ -1,10 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Form, Button } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
-import useInsertData from "../hooks/useInsertData";
 
 function InputForm({ expenseType }) {
   const [submit, setSubmit] = useState([]);
@@ -30,6 +28,16 @@ function InputForm({ expenseType }) {
     insertData(expenseType, submit.date, submit.amount, submit.concept);
   }, [submit]);
 
+  const validationSchema = Yup.object().shape({
+    date: Yup.date()
+      .required("Ingresar la fecha")
+      .typeError("Ingresar fecha en formato válido"),
+    amount: Yup.number()
+      .required("Indique el monto")
+      .typeError("Ingrese el valor en números"),
+    concept: Yup.string().required("Describa la operación que desea registrar"),
+  });
+
   const [tipo, setTipo] = useState(expenseType);
   //used useState, if not expenseType would have,
   //instead of a string initialValue, an object
@@ -40,51 +48,82 @@ function InputForm({ expenseType }) {
       amount: "",
       concept: "",
     },
-    validationSchema: Yup.object({
-      date: Yup.date().required("Ingresar la fecha"),
-      amount: Yup.number().required("Indique el monto"),
-      concept: Yup.string().required(
-        "Describa la operación que desea registrar"
-      ),
-    }),
     onSubmit: (formData) => {
       setSubmit(formData);
+      formik.resetForm();
+      console.log(formData);
     },
+    validationSchema: validationSchema,
   });
+
+  const renderErrorMessage = (field) => {
+    return (
+      formik.touched[field] && (
+        <div style={{ color: "coral" }}>{formik.errors[field]}</div>
+      )
+    );
+  };
 
   return (
     <div className="ui padded container">
       <h1>Input Form</h1>
-      <Form onSubmit={formik.handleSubmit}>
-        <Form.Group widths="equal">
-          <Form.Input
-            fluid
-            label="Date"
-            name="date"
-            placeholder="yyyy-mm-dd <> dd/mm/yyyy"
+      <form className="ui form" onSubmit={formik.handleSubmit}>
+        <div className="two fields">
+          <div className="field">
+            <label> Date </label>
+            <input
+              type="text"
+              name="date"
+              placeholder="yyyy-mm-dd <> dd/mm/yyyy"
+              onChange={formik.handleChange}
+              error={formik.errors.date}
+              {...formik.getFieldProps("date")}
+            />
+            {renderErrorMessage("date")}
+          </div>
+          <div className="field">
+            <label> Amount </label>
+            <input
+              type="text"
+              name="amount"
+              placeholder="How much?"
+              onChange={formik.handleChange}
+              error={formik.errors.amount}
+              {...formik.getFieldProps("amount")}
+            />
+            {renderErrorMessage("amount")}
+          </div>
+        </div>
+        <div className="field">
+          <label> Concept </label>
+          <textarea
+            rows="3"
+            type="text"
+            name="concept"
+            placeholder="Describe your expense"
             onChange={formik.handleChange}
-            error={formik.errors.date}
+            error={formik.errors.concept}
+            {...formik.getFieldProps("concept")}
           />
-          <Form.Input
-            fluid
-            label="Amount"
-            name="amount"
-            placeholder="How much?"
-            onChange={formik.handleChange}
-            error={formik.errors.ammount}
-          />
-        </Form.Group>
-
-        <Form.TextArea
-          label="Concept"
-          name="concept"
-          placeholder="Expense description..."
-          onChange={formik.handleChange}
-          error={formik.errors.concept}
-        />
-
-        <Button type="submit">Submit</Button>
-      </Form>
+          {renderErrorMessage("concept")}
+        </div>
+        <div className="ui grid two column row">
+          <div className="left floated column">
+            <button className="ui button " type="submit">
+              Submit
+            </button>
+          </div>
+          <div className="right floated column">
+            <button
+              className="ui button right floated"
+              type="reset"
+              onClick={formik.resetForm}
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }
