@@ -9,6 +9,27 @@ import useInsertData from "../hooks/useInsertData";
 function InputForm({ expenseType }) {
   const [submit, setSubmit] = useState([]);
 
+  useEffect(() => {
+    const insertData = async (expense, date, amount, concept) => {
+      try {
+        const { data } = await Axios.post(
+          `http://localhost:4000/expense`,
+          {
+            expense,
+            date,
+            amount,
+            concept,
+          } // date, ammount, concept
+        );
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    insertData(expenseType, submit.date, submit.amount, submit.concept);
+  }, [submit]);
+
   const [tipo, setTipo] = useState(expenseType);
   //used useState, if not expenseType would have,
   //instead of a string initialValue, an object
@@ -16,41 +37,17 @@ function InputForm({ expenseType }) {
     initialValues: {
       expenseType: tipo,
       date: "",
-      ammount: "",
+      amount: "",
       concept: "",
     },
     validationSchema: Yup.object({
       date: Yup.date().required("Ingresar la fecha"),
-      ammount: Yup.number().required("Indique el monto"),
+      amount: Yup.number().required("Indique el monto"),
       concept: Yup.string().required(
         "Describa la operación que desea registrar"
       ),
     }),
     onSubmit: (formData) => {
-      console.log(formData);
-      const insertData = async (expense, date, ammount, concept) => {
-        try {
-          const { data } = await Axios.post(
-            `http://localhost:4000/expense`,
-            {
-              expense,
-              date,
-              ammount,
-              concept,
-            } // date, ammount, concept
-          );
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
-      insertData(
-        submit.expenseType,
-        submit.date,
-        submit.ammount,
-        submit.concept
-      );
       setSubmit(formData);
     },
   });
@@ -70,8 +67,8 @@ function InputForm({ expenseType }) {
           />
           <Form.Input
             fluid
-            label="Ammount"
-            name="ammount"
+            label="Amount"
+            name="amount"
             placeholder="How much?"
             onChange={formik.handleChange}
             error={formik.errors.ammount}

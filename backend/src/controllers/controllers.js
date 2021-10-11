@@ -10,18 +10,22 @@ const pool = new Pool({
 
 // INSERT
 const createExpense = async (req, res) => {
-  const { concept, amount, date, expenseType } = req.body;
-  const response = await pool.query(
-    "INSERT INTO expense (type, date, amount, concept) VALUES ($1, $2, $3, $4)",
-    [expenseType, date, amount, concept]
-  );
-  console.log(response);
-  res.json({
-    message: "Expense Added Succesfully",
-    body: {
-      expense: { date, expenseType, concept, amount, date },
-    },
-  });
+  try {
+    const { concept, amount, date, expense } = req.body;
+    const response = await pool.query(
+      "INSERT INTO expense (type, date, amount, concept) VALUES ($1, $2, $3, $4)",
+      [expense, date, amount, concept]
+    );
+    console.log(response);
+    res.json({
+      message: "Expense Added Succesfully",
+      body: {
+        expense: { expense, concept, amount, date },
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // SELECT
