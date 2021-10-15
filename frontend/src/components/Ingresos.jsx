@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EditForm from "./EditForm";
 import ExpenseList from "./ExpenseList";
 import InputForm from "./InputForm";
+import Modal from "./Modal";
 
 function Ingresos() {
   const [editing, setEditing] = useState(false);
@@ -10,8 +11,18 @@ function Ingresos() {
   const [editingAmount, setEditingAmount] = useState("");
   const [editingConcept, setEditingConcept] = useState("");
 
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+
   return (
     <>
+      <button
+        className="clickMe"
+        onClick={() => {
+          toggle;
+        }}
+      ></button>
+      <Modal show={modal} title="My Modal" close={toggle} />
       <h2 align="center">Ingresos</h2>
       <div className="ui text container">
         <InputForm expenseType="ingreso" />

@@ -1,6 +1,6 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Abm from "./components/Abm";
 
@@ -10,8 +10,8 @@ function App() {
       <div className="App">
         <Navbar />
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/abm' component={Abm} />
+          <Route exact path="/" component={Home} />
+          <Route path="/abm" component={Abm} />
         </Switch>
       </div>
     </BrowserRouter>

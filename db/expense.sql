@@ -19,6 +19,7 @@ ALTER TABLE public.expense
 
 
 
+-- Sample insertions for quick demo
 
 insert into expense ("type", "date", "amount", "concept")
 values 	('ingreso', '2021-09-20', 20000, 'encargo freelance'),
