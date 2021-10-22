@@ -6,7 +6,7 @@ import { numberFormat } from "../helpers/numberFormat";
 import Axios from "axios";
 // Redux
 import { useDispatch } from "react-redux";
-import { editEgresoSetAction } from "../redux/actions/egresosActions";
+import { editExpenseSetAction } from "../redux/actions/egresosActions";
 
 const ExpenseList = ({
   query,
@@ -39,7 +39,7 @@ const ExpenseList = ({
   // Dispatch
   const dispatch = useDispatch();
   // Action
-  const editEgresoSet = (i) => dispatch(editEgresoSetAction(i));
+  const editExpenseSet = (i) => dispatch(editExpenseSetAction(i));
 
   return (
     <>
@@ -62,7 +62,7 @@ const ExpenseList = ({
                 <td>
                   <div
                     onClick={() => {
-                      editEgresoSet({
+                      editExpenseSet({
                         id: id_expense,
                         concept: concept,
                         amount: amount,

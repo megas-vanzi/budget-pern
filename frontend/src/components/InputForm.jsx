@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import Axios from "axios";
 // Redux
 import { useDispatch } from "react-redux";
-import { addNewEgresoAction } from "../redux/actions/egresosActions";
+import { addNewExpenseAction } from "../redux/actions/egresosActions";
 
 function InputForm({ expenseType }) {
   const [submit, setSubmit] = useState([]);
@@ -27,7 +27,7 @@ function InputForm({ expenseType }) {
   // Dispatch
   const dispatch = useDispatch();
   // Action
-  const addExpense = (i) => dispatch(addNewEgresoAction(i));
+  const addExpense = (i) => dispatch(addNewExpenseAction(i));
 
   const handleSubmit = (e) => {
     e.preventDefault();

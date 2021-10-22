@@ -1,14 +1,14 @@
 import {
-  ADD_EGRESO,
-  ADD_EGRESO_SUCCESS,
-  ADD_EGRESO_ERROR,
-  EDIT_EGRESO_SET,
-  EDIT_EGRESO,
-  EDIT_EGRESO_SUCCESS,
-  EDIT_EGRESO_ERROR,
-  DELETE_EGRESO,
-  DELETE_EGRESO_SUCCESS,
-  DELETE_EGRESO_ERROR,
+  ADD_EXPENSE,
+  ADD_EXPENSE_SUCCESS,
+  ADD_EXPENSE_ERROR,
+  EDIT_EXPENSE_SET,
+  EDIT_EXPENSE,
+  EDIT_EXPENSE_SUCCESS,
+  EDIT_EXPENSE_ERROR,
+  DELETE_EXPENSE,
+  DELETE_EXPENSE_SUCCESS,
+  DELETE_EXPENSE_ERROR,
 } from "../actions/egresosActions";
 
 const initialState = {
@@ -19,50 +19,50 @@ const initialState = {
 
 function egresosReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_EGRESO:
+    case ADD_EXPENSE:
       return {
         ...state,
       };
-    case ADD_EGRESO_SUCCESS:
+    case ADD_EXPENSE_SUCCESS:
       return {
         ...state,
         egresos: [...state.egresos, action.payload],
       };
-    case ADD_EGRESO_ERROR:
+    case ADD_EXPENSE_ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    case EDIT_EGRESO_SET:
+    case EDIT_EXPENSE_SET:
       return {
         ...state,
         expenseToEdit: action.payload,
       };
-    case EDIT_EGRESO:
+    case EDIT_EXPENSE:
       return {
         ...state,
       };
-    case EDIT_EGRESO_SUCCESS:
+    case EDIT_EXPENSE_SUCCESS:
       return {
         ...state,
         egresos: [...state.egresos, action.payload],
         expenseToEdit: null,
       };
-    case EDIT_EGRESO_ERROR:
+    case EDIT_EXPENSE_ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    case DELETE_EGRESO:
+    case DELETE_EXPENSE:
       return {
         ...state,
       };
-    case DELETE_EGRESO_SUCCESS:
+    case DELETE_EXPENSE_SUCCESS:
       return {
         ...state,
         egresos: [...state.egresos, action.payload],
       };
-    case DELETE_EGRESO_ERROR:
+    case DELETE_EXPENSE_ERROR:
       return {
         ...state,
         error: action.payload,

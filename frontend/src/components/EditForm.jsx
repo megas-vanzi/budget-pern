@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { editEgresoAction } from "../redux/actions/egresosActions";
+import { editExpenseAction } from "../redux/actions/egresosActions";
 
 function EditForm() {
   const [expense, setExpense] = useState({
@@ -36,7 +36,7 @@ function EditForm() {
   // Dispatch
   const dispatch = useDispatch();
   // Action
-  const editExpense = (i) => dispatch(editEgresoAction(i));
+  const editExpense = (i) => dispatch(editExpenseAction(i));
 
   const handleSubmit = (e) => {
     e.preventDefault();

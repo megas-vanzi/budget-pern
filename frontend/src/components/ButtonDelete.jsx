@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Button, Icon, Label } from "semantic-ui-react";
 // Redux
 import { useDispatch } from "react-redux";
-import { deleteEgresoAction } from "../redux/actions/egresosActions";
+import { deleteExpenseAction } from "../redux/actions/egresosActions";
 
 const ButtonDelete = ({ id }) => {
   // Dispatch
   const dispatch = useDispatch();
   // Action
-  const deleteExpense = (i) => dispatch(deleteEgresoAction(i));
+  const deleteExpense = (i) => dispatch(deleteExpenseAction(i));
 
   const clickDelete = () => {
     console.log(`click delete ${id}`);
