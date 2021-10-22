@@ -5,6 +5,9 @@ import {
   EDIT_INGRESO,
   EDIT_INGRESO_SUCCESS,
   EDIT_INGRESO_ERROR,
+  DELETE_INGRESO,
+  DELETE_INGRESO_SUCCESS,
+  DELETE_INGRESO_ERROR,
 } from "../actions/ingresosActions";
 
 const initialState = {
@@ -38,6 +41,20 @@ function ingresosReducer(state = initialState, action) {
         ingresos: [...state.ingresos, action.payload],
       };
     case EDIT_INGRESO_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case DELETE_INGRESO:
+      return {
+        ...state,
+      };
+    case DELETE_INGRESO_SUCCESS:
+      return {
+        ...state,
+        ingresos: [...state.ingresos, action.payload],
+      };
+    case DELETE_INGRESO_ERROR:
       return {
         ...state,
         error: action.payload,

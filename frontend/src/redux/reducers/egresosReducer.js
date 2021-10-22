@@ -5,6 +5,9 @@ import {
   EDIT_EGRESO,
   EDIT_EGRESO_SUCCESS,
   EDIT_EGRESO_ERROR,
+  DELETE_EGRESO,
+  DELETE_EGRESO_SUCCESS,
+  DELETE_EGRESO_ERROR,
 } from "../actions/egresosActions";
 
 const initialState = {
@@ -38,6 +41,20 @@ function egresosReducer(state = initialState, action) {
         egresos: [...state.egresos, action.payload],
       };
     case EDIT_EGRESO_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case DELETE_EGRESO:
+      return {
+        ...state,
+      };
+    case DELETE_EGRESO_SUCCESS:
+      return {
+        ...state,
+        egresos: [...state.egresos, action.payload],
+      };
+    case DELETE_EGRESO_ERROR:
       return {
         ...state,
         error: action.payload,
