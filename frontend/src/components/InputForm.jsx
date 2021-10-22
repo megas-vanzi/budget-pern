@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import Axios from "axios";
 // Redux
 import { useDispatch } from "react-redux";
-import { addNewExpenseAction } from "../redux/actions/egresosActions";
+import { addNewExpenseAction } from "../redux/actions";
 
 function InputForm({ expenseType }) {
   const [submit, setSubmit] = useState([]);

@@ -6,7 +6,7 @@ import { numberFormat } from "../helpers/numberFormat";
 import Axios from "axios";
 // Redux
 import { useDispatch } from "react-redux";
-import { editExpenseSetAction } from "../redux/actions/egresosActions";
+import { editExpenseSetAction } from "../redux/actions";
 
 const ExpenseList = ({
   query,

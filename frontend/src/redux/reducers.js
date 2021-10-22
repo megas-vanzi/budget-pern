@@ -9,15 +9,15 @@ import {
   DELETE_EXPENSE,
   DELETE_EXPENSE_SUCCESS,
   DELETE_EXPENSE_ERROR,
-} from "../actions/egresosActions";
+} from "./actions";
 
 const initialState = {
-  egresos: [],
+  expense: [],
   error: null,
   expenseToEdit: null,
 };
 
-function egresosReducer(state = initialState, action) {
+function expenseReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_EXPENSE:
       return {
@@ -72,4 +72,4 @@ function egresosReducer(state = initialState, action) {
   }
 }
 
-export default egresosReducer;
+export default expenseReducer;
