@@ -1,25 +1,11 @@
 import React, { useState, useEffect, Component } from "react";
-import PropTypes from "prop-types";
-import Axios from "axios";
-import { numberFormat } from "../helpers/numberFormat";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { editEgresoAction } from "../redux/actions/egresosActions";
 
-function EditForm({
-  id_expense,
-  date,
-  amount,
-  concept,
-  setEditing,
-  setEditingId,
-  setEditingDate,
-  setEditingAmount,
-  setEditingConcept,
-}) {
-  const [submit, setSubmit] = useState([]);
+function EditForm() {
   const [expense, setExpense] = useState({
     date: "",
     amount: "",
@@ -55,7 +41,11 @@ function EditForm({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(editExpense(expense));
+    try {
+      dispatch(editExpense(expense));
+    } catch (error) {
+      console.log(error);
+    }
 
     console.log("editando");
     console.log(expense);
@@ -86,13 +76,6 @@ function EditForm({
   return (
     <div className="ui padded container">
       <h2 id="edit-form">Edit Form</h2>
-      <table>
-        <tr>
-          <td>{amount == "" ? "" : numberFormat(amount)}</td>
-          <td>{concept}</td>
-          <td>{date.slice(0, -14)}</td>
-        </tr>
-      </table>
       <form className="ui form" onSubmit={handleSubmit}>
         <div className="two fields">
           <div className="field">
@@ -153,9 +136,5 @@ function EditForm({
     </div>
   );
 }
-
-EditForm.propTypes = {
-  id_expense: PropTypes.number,
-};
 
 export default EditForm;

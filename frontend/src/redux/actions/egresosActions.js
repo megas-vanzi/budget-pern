@@ -41,8 +41,6 @@ const addEgresoError = (errorState) => ({
 });
 
 //EDIT
-
-// Colocar producto en edición
 export function editEgresoSetAction(expense) {
   return (dispatch) => {
     dispatch(editEgresoSet(expense));
@@ -62,6 +60,7 @@ export function editEgresoAction(egreso) {
       await Axios.put(`http://localhost:4000/expense/${egreso.id}`, egreso);
       dispatch(editEgresoSuccess(egreso));
     } catch (error) {
+      console.log(error);
       dispatch(editEgresoError(true));
     }
   };
