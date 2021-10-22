@@ -83,11 +83,15 @@ const editEgresoError = (errorState) => ({
 
 //DELETE
 export function deleteEgresoAction(egreso) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(deleteEgreso());
 
     try {
+      const { data } = await Axios.delete(
+        `http://localhost:4000/expense/${egreso}`
+      );
       dispatch(deleteEgresoSuccess(egreso));
+      console.log(data);
     } catch (error) {
       dispatch(deleteEgresoError(true));
     }

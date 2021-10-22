@@ -1,20 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Label } from "semantic-ui-react";
-import Axios from "axios";
+// Redux
+import { useDispatch } from "react-redux";
+import { deleteEgresoAction } from "../redux/actions/egresosActions";
 
 const ButtonDelete = ({ id }) => {
+  // Dispatch
+  const dispatch = useDispatch();
+  // Action
+  const deleteExpense = (i) => dispatch(deleteEgresoAction(i));
+
   const clickDelete = () => {
     console.log(`click delete ${id}`);
-    fetchData(id);
-  };
-
-  const fetchData = async (id) => {
     try {
-      const { data } = await Axios.delete(
-        `http://localhost:4000/expense/${id}`
-      ); // localhost 4000  id de la expense a deletear
-      console.log(data);
+      dispatch(deleteExpense(id));
+      console.log("deleting");
+      console.log(id);
     } catch (error) {
       console.log(error);
     }
