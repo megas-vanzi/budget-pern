@@ -3,30 +3,50 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
+// Redux
+import { useDispatch } from "react-redux";
+import { addNewEgresoAction } from "../redux/actions/egresosActions";
 
 function InputForm({ expenseType }) {
   const [submit, setSubmit] = useState([]);
 
-  useEffect(() => {
-    const insertData = async (expense, date, amount, concept) => {
-      try {
-        const { data } = await Axios.post(
-          `http://localhost:4000/expense`,
-          {
-            expense,
-            date,
-            amount,
-            concept,
-          } // date, ammount, concept
-        );
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const [expense, setExpense] = useState({
+    date: "",
+    amount: "",
+    concept: "",
+    expense: expenseType,
+  });
 
-    insertData(expenseType, submit.date, submit.amount, submit.concept);
-  }, [submit]);
+  const handleChange = (e) => {
+    setExpense({
+      ...expense,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Dispatch
+  const dispatch = useDispatch();
+  // Action
+  const addExpense = (i) => dispatch(addNewEgresoAction(i));
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      dispatch(addExpense(expense));
+      console.log("agregando");
+      console.log(expense);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setExpense({
+      ...expense,
+      date: "",
+      amount: "",
+      concept: "",
+    });
+  };
 
   const validationSchema = Yup.object().shape({
     date: Yup.date()
@@ -38,21 +58,7 @@ function InputForm({ expenseType }) {
     concept: Yup.string().required("Describa la operación que desea registrar"),
   });
 
-  const [tipo, setTipo] = useState(expenseType);
-  //used useState, if not expenseType would have,
-  //instead of a string initialValue, an object
   const formik = useFormik({
-    initialValues: {
-      expenseType: tipo,
-      date: "",
-      amount: "",
-      concept: "",
-    },
-    onSubmit: (formData) => {
-      setSubmit(formData);
-      formik.resetForm();
-      console.log(formData);
-    },
     validationSchema: validationSchema,
   });
 
@@ -67,7 +73,7 @@ function InputForm({ expenseType }) {
   return (
     <div className="ui padded container">
       <h1>Input Form</h1>
-      <form className="ui form" onSubmit={formik.handleSubmit}>
+      <form className="ui form" onSubmit={handleSubmit}>
         <div className="two fields">
           <div className="field">
             <label> Date </label>
@@ -75,9 +81,9 @@ function InputForm({ expenseType }) {
               type="text"
               name="date"
               placeholder="yyyy-mm-dd <> dd/mm/yyyy"
-              onChange={formik.handleChange}
+              onChange={handleChange}
               error={formik.errors.date}
-              {...formik.getFieldProps("date")}
+              value={expense.date}
             />
             {renderErrorMessage("date")}
           </div>
@@ -87,9 +93,9 @@ function InputForm({ expenseType }) {
               type="text"
               name="amount"
               placeholder="How much?"
-              onChange={formik.handleChange}
+              onChange={handleChange}
               error={formik.errors.amount}
-              {...formik.getFieldProps("amount")}
+              value={expense.amount}
             />
             {renderErrorMessage("amount")}
           </div>
@@ -101,9 +107,9 @@ function InputForm({ expenseType }) {
             type="text"
             name="concept"
             placeholder="Describe your expense"
-            onChange={formik.handleChange}
+            onChange={handleChange}
             error={formik.errors.concept}
-            {...formik.getFieldProps("concept")}
+            value={expense.concept}
           />
           {renderErrorMessage("concept")}
         </div>
@@ -117,7 +123,14 @@ function InputForm({ expenseType }) {
             <button
               className="ui button right floated"
               type="reset"
-              onClick={formik.resetForm}
+              onClick={() =>
+                setExpense({
+                  ...expense,
+                  date: "",
+                  amount: "",
+                  concept: "",
+                })
+              }
             >
               Reset
             </button>

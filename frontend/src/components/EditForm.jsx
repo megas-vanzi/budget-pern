@@ -43,12 +43,11 @@ function EditForm() {
 
     try {
       dispatch(editExpense(expense));
+      console.log("editando");
+      console.log(expense);
     } catch (error) {
       console.log(error);
     }
-
-    console.log("editando");
-    console.log(expense);
   };
 
   const validationSchema = Yup.object().shape({
@@ -126,7 +125,14 @@ function EditForm() {
             <button
               className="ui button right floated"
               type="reset"
-              onClick={formik.resetForm}
+              onClick={() =>
+                setExpense({
+                  ...expense,
+                  date: "",
+                  amount: "",
+                  concept: "",
+                })
+              }
             >
               Cancel
             </button>

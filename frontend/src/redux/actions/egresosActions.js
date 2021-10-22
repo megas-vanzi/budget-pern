@@ -15,10 +15,11 @@ export const DELETE_EGRESO_ERROR = "DELETE_EGRESO_ERROR";
 
 //ADD
 export function addNewEgresoAction(newEgreso) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(addNewEgreso());
 
     try {
+      await Axios.post("http://localhost:4000/expense", newEgreso);
       dispatch(addEgresoSuccess(newEgreso));
     } catch (error) {
       dispatch(addEgresoError(true));
