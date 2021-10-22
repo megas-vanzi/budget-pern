@@ -2,6 +2,9 @@ import {
   ADD_INGRESO,
   ADD_INGRESO_SUCCESS,
   ADD_INGRESO_ERROR,
+  EDIT_INGRESO,
+  EDIT_INGRESO_SUCCESS,
+  EDIT_INGRESO_ERROR,
 } from "../actions/ingresosActions";
 
 const initialState = {
@@ -21,6 +24,20 @@ function ingresosReducer(state = initialState, action) {
         ingresos: [...state.ingresos, action.payload],
       };
     case ADD_INGRESO_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case EDIT_INGRESO:
+      return {
+        ...state,
+      };
+    case EDIT_INGRESO_SUCCESS:
+      return {
+        ...state,
+        ingresos: [...state.ingresos, action.payload],
+      };
+    case EDIT_INGRESO_ERROR:
       return {
         ...state,
         error: action.payload,
