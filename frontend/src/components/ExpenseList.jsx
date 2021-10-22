@@ -4,6 +4,9 @@ import ButtonEdit from "./ButtonEdit";
 import ButtonDelete from "./ButtonDelete";
 import { numberFormat } from "../helpers/numberFormat";
 import Axios from "axios";
+// Redux
+import { useDispatch } from "react-redux";
+import { editEgresoSetAction } from "../redux/actions/egresosActions";
 
 const ExpenseList = ({
   query,
@@ -14,6 +17,12 @@ const ExpenseList = ({
   setEditingConcept,
 }) => {
   const [expenses, setExpenses] = useState([]);
+  const [something, setSomething] = useState({
+    id: "",
+    concept: "",
+    amount: "",
+    date: "",
+  });
 
   useEffect(() => {
     (async () => {
@@ -26,6 +35,11 @@ const ExpenseList = ({
       }
     })();
   }, [expenses]);
+
+  // Dispatch
+  const dispatch = useDispatch();
+  // Action
+  const editEgresoSet = (i) => dispatch(editEgresoSetAction(i));
 
   return (
     <>
@@ -48,11 +62,12 @@ const ExpenseList = ({
                 <td>
                   <div
                     onClick={() => {
-                      setEditing(true);
-                      setEditingId(id_expense);
-                      setEditingDate(date);
-                      setEditingAmount(amount);
-                      setEditingConcept(concept);
+                      editEgresoSet({
+                        id: id_expense,
+                        concept: concept,
+                        amount: amount,
+                        date: date,
+                      });
                     }}
                   >
                     <ButtonEdit id={id_expense} />

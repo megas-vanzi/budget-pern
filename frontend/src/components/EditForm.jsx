@@ -1,9 +1,12 @@
 import React, { useState, useEffect, Component } from "react";
 import PropTypes from "prop-types";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import Axios from "axios";
 import { numberFormat } from "../helpers/numberFormat";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { editEgresoAction } from "../redux/actions/egresosActions";
 
 function EditForm({
   id_expense,
@@ -17,26 +20,46 @@ function EditForm({
   setEditingConcept,
 }) {
   const [submit, setSubmit] = useState([]);
+  const [expense, setExpense] = useState({
+    date: "",
+    amount: "",
+    concept: "",
+    expenseId: "",
+  });
+
+  const expenseToEdit = useSelector((state) => state.egresos.expenseToEdit);
 
   useEffect(() => {
-    const updateData = async (id, date, amount, concept) => {
-      try {
-        const { data } = await Axios.put(
-          `http://localhost:4000/expense/${id}`,
-          {
-            date,
-            amount,
-            concept,
-          } // date, ammount, concept
-        );
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    expenseToEdit === null
+      ? setExpense({
+          date: "",
+          amount: "",
+          concept: "",
+          expenseId: "",
+        })
+      : setExpense(expenseToEdit);
+  }, [expenseToEdit]);
 
-    updateData(id_expense, submit.date, submit.amount, submit.concept);
-  }, [submit]);
+  const handleChange = (e) => {
+    setExpense({
+      ...expense,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Dispatch
+  const dispatch = useDispatch();
+  // Action
+  const editExpense = (i) => dispatch(editEgresoAction(i));
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(editExpense(expense));
+
+    console.log("editando");
+    console.log(expense);
+  };
 
   const validationSchema = Yup.object().shape({
     date: Yup.date()
@@ -49,21 +72,6 @@ function EditForm({
   });
 
   const formik = useFormik({
-    initialValues: {
-      date: "",
-      amount: "",
-      concept: "",
-    },
-    onSubmit: (formData) => {
-      setSubmit(formData);
-      formik.resetForm();
-      console.log(formData);
-      setEditing(false);
-      setEditingId("");
-      setEditingDate("");
-      setEditingAmount("");
-      setEditingConcept("");
-    },
     validationSchema: validationSchema,
   });
 
@@ -85,7 +93,7 @@ function EditForm({
           <td>{date.slice(0, -14)}</td>
         </tr>
       </table>
-      <form className="ui form" onSubmit={formik.handleSubmit}>
+      <form className="ui form" onSubmit={handleSubmit}>
         <div className="two fields">
           <div className="field">
             <label> Date </label>
@@ -93,9 +101,9 @@ function EditForm({
               type="text"
               name="date"
               placeholder="Edit Date"
-              onChange={formik.handleChange}
+              onChange={handleChange}
               error={formik.errors.date}
-              {...formik.getFieldProps("date")}
+              value={expense.date}
             />
             {renderErrorMessage("date")}
           </div>
@@ -105,9 +113,9 @@ function EditForm({
               type="text"
               name="amount"
               placeholder="Edit Amount"
-              onChange={formik.handleChange}
+              onChange={handleChange}
               error={formik.errors.amount}
-              {...formik.getFieldProps("amount")}
+              value={expense.amount}
             />
             {renderErrorMessage("amount")}
           </div>
@@ -119,9 +127,9 @@ function EditForm({
             type="text"
             name="concept"
             placeholder="Edit Concept"
-            onChange={formik.handleChange}
+            onChange={handleChange}
             error={formik.errors.concept}
-            {...formik.getFieldProps("concept")}
+            value={expense.concept}
           />
           {renderErrorMessage("concept")}
         </div>

@@ -12,17 +12,11 @@ function Ingresos() {
   const [editingConcept, setEditingConcept] = useState("");
 
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
 
   return (
     <>
-      <button
-        className="clickMe"
-        onClick={() => {
-          toggle;
-        }}
-      ></button>
-      <Modal show={modal} title="My Modal" close={toggle} />
+      <button className="clickMe"></button>
+      <Modal show={modal} title="My Modal" />
       <h2 align="center">Ingresos</h2>
       <div className="ui text container">
         <InputForm expenseType="ingreso" />

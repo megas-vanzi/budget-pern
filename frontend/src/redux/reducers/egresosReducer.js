@@ -2,6 +2,7 @@ import {
   ADD_EGRESO,
   ADD_EGRESO_SUCCESS,
   ADD_EGRESO_ERROR,
+  EDIT_EGRESO_SET,
   EDIT_EGRESO,
   EDIT_EGRESO_SUCCESS,
   EDIT_EGRESO_ERROR,
@@ -13,6 +14,7 @@ import {
 const initialState = {
   egresos: [],
   error: null,
+  expenseToEdit: null,
 };
 
 function egresosReducer(state = initialState, action) {
@@ -31,6 +33,11 @@ function egresosReducer(state = initialState, action) {
         ...state,
         error: action.payload,
       };
+    case EDIT_EGRESO_SET:
+      return {
+        ...state,
+        expenseToEdit: action.payload,
+      };
     case EDIT_EGRESO:
       return {
         ...state,
@@ -39,6 +46,7 @@ function egresosReducer(state = initialState, action) {
       return {
         ...state,
         egresos: [...state.egresos, action.payload],
+        expenseToEdit: null,
       };
     case EDIT_EGRESO_ERROR:
       return {

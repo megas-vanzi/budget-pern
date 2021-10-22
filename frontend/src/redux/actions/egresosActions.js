@@ -1,7 +1,10 @@
+import Axios from "axios";
+
 export const ADD_EGRESO = "ADD_EGRESO";
 export const ADD_EGRESO_SUCCESS = "ADD_EGRESO_SUCCESS";
 export const ADD_EGRESO_ERROR = "ADD_EGRESO_ERROR";
 
+export const EDIT_EGRESO_SET = "EDIT_EGRESO_SET";
 export const EDIT_EGRESO = "EDIT_EGRESO";
 export const EDIT_EGRESO_SUCCESS = "EDIT_EGRESO_SUCCESS";
 export const EDIT_EGRESO_ERROR = "EDIT_EGRESO_ERROR";
@@ -38,11 +41,25 @@ const addEgresoError = (errorState) => ({
 });
 
 //EDIT
-export function editEgresoAction(egreso) {
+
+// Colocar producto en edición
+export function editEgresoSetAction(expense) {
   return (dispatch) => {
+    dispatch(editEgresoSet(expense));
+  };
+}
+
+const editEgresoSet = (expense) => ({
+  type: EDIT_EGRESO_SET,
+  payload: expense,
+});
+
+export function editEgresoAction(egreso) {
+  return async (dispatch) => {
     dispatch(editEgreso());
 
     try {
+      await Axios.put(`http://localhost:4000/expense/${egreso.id}`, egreso);
       dispatch(editEgresoSuccess(egreso));
     } catch (error) {
       dispatch(editEgresoError(true));
