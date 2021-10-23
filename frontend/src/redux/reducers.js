@@ -12,7 +12,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  expense: [],
+  expenses: [],
   error: null,
   expenseToEdit: null,
 };
@@ -26,7 +26,7 @@ function expenseReducer(state = initialState, action) {
     case ADD_EXPENSE_SUCCESS:
       return {
         ...state,
-        egresos: [...state.egresos, action.payload],
+        expenses: [...state.expenses, action.payload],
       };
     case ADD_EXPENSE_ERROR:
       return {
@@ -45,7 +45,7 @@ function expenseReducer(state = initialState, action) {
     case EDIT_EXPENSE_SUCCESS:
       return {
         ...state,
-        egresos: [...state.egresos, action.payload],
+        expenses: [...state.expenses, action.payload],
         expenseToEdit: null,
       };
     case EDIT_EXPENSE_ERROR:
@@ -60,7 +60,7 @@ function expenseReducer(state = initialState, action) {
     case DELETE_EXPENSE_SUCCESS:
       return {
         ...state,
-        egresos: [...state.egresos, action.payload],
+        expenses: [...state.expenses, action.payload],
       };
     case DELETE_EXPENSE_ERROR:
       return {

@@ -35,16 +35,14 @@ function EditForm() {
 
   // Dispatch
   const dispatch = useDispatch();
-  // Action
-  const editExpense = (i) => dispatch(editExpenseAction(i));
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
-      dispatch(editExpense(expense));
       console.log("editando");
       console.log(expense);
+      dispatch(editExpenseAction(expense));
     } catch (error) {
       console.log(error);
     }

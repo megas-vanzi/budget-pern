@@ -26,16 +26,14 @@ function InputForm({ expenseType }) {
 
   // Dispatch
   const dispatch = useDispatch();
-  // Action
-  const addExpense = (i) => dispatch(addNewExpenseAction(i));
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
-      dispatch(addExpense(expense));
       console.log("agregando");
       console.log(expense);
+      dispatch(addNewExpenseAction(expense));
     } catch (error) {
       console.log(error);
     }
