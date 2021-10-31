@@ -4,9 +4,6 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Sequelize } = require("sequelize");
-const dotenv = require("dotenv");
-
-dotenv.config({ path: "./env/.env" });
 
 // middlewares
 app.use(cors());
