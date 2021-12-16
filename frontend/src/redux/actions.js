@@ -18,12 +18,14 @@ export const DELETE_EXPENSE_SUCCESS = "DELETE_EXPENSE_SUCCESS";
 export const DELETE_EXPENSE_ERROR = "DELETE_EXPENSE_ERROR";
 
 //READ
-export function getExpenseAction() {
+export function getExpenseAction(query) {
   return async (dispatch) => {
     dispatch(getExpense());
 
     try {
-      const expenseData = await Axios.get(`http://localhost:4000/expense/`);
+      const expenseData = await Axios.get(
+        `http://localhost:4000/expense${query}`
+      );
       dispatch(getExpenseSuccess(expenseData));
     } catch (error) {
       dispatch(getExpenseError(true));
