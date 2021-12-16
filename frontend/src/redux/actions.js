@@ -1,5 +1,9 @@
 import Axios from "axios";
 
+export const GET_EXPENSE = "GET_EXPENSE";
+export const GET_EXPENSE_SUCCESS = "GET_EXPENSE_SUCCESS";
+export const GET_EXPENSE_ERROR = "GET_EXPENSE_ERROR";
+
 export const ADD_EXPENSE = "ADD_EXPENSE";
 export const ADD_EXPENSE_SUCCESS = "ADD_EXPENSE_SUCCESS";
 export const ADD_EXPENSE_ERROR = "ADD_EXPENSE_ERROR";
@@ -12,6 +16,34 @@ export const EDIT_EXPENSE_ERROR = "EDIT_EXPENSE_ERROR";
 export const DELETE_EXPENSE = "DELETE_EXPENSE";
 export const DELETE_EXPENSE_SUCCESS = "DELETE_EXPENSE_SUCCESS";
 export const DELETE_EXPENSE_ERROR = "DELETE_EXPENSE_ERROR";
+
+//READ
+export function getExpenseAction() {
+  return async (dispatch) => {
+    dispatch(getExpense());
+
+    try {
+      const expenseData = await Axios.get(`http://localhost:4000/expense/`);
+      dispatch(getExpenseSuccess(expenseData));
+    } catch (error) {
+      dispatch(getExpenseError(true));
+    }
+  };
+}
+
+const getExpense = () => ({
+  type: GET_EXPENSE,
+});
+
+const getExpenseSuccess = (expense) => ({
+  type: GET_EXPENSE_SUCCESS,
+  payload: expense,
+});
+
+const getExpenseError = (errorState) => ({
+  type: GET_EXPENSE_ERROR,
+  payload: errorState,
+});
 
 //ADD
 export function addNewExpenseAction(newExpense) {

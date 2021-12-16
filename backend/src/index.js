@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Sequelize } = require("sequelize");
 
+const port = 4000;
+
 // middlewares
 app.use(cors());
 app.use(express.json());
