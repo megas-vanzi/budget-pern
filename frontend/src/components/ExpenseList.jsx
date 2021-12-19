@@ -5,8 +5,8 @@ import ButtonDelete from "./ButtonDelete";
 import { numberFormat } from "../helpers/numberFormat";
 import Axios from "axios";
 // Redux
-import { useDispatch } from "react-redux";
-import { editExpenseSetAction } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { editExpenseSetAction, getExpenseAction } from "../redux/actions";
 
 const ExpenseList = ({
   query,
@@ -35,6 +35,13 @@ const ExpenseList = ({
       }
     })();
   }, [expenses]);
+
+  useEffect(() => {
+    dispatch(getExpenseAction(query));
+  }, []);
+
+  const expenseQuery = useSelector((state) => state.expenses);
+  console.log(expenseQuery);
 
   // Dispatch
   const dispatch = useDispatch();

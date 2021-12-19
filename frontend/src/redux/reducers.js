@@ -1,4 +1,7 @@
 import {
+  GET_EXPENSE,
+  GET_EXPENSE_SUCCESS,
+  GET_EXPENSE_ERROR,
   ADD_EXPENSE,
   ADD_EXPENSE_SUCCESS,
   ADD_EXPENSE_ERROR,
@@ -12,13 +15,27 @@ import {
 } from "./actions";
 
 const initialState = {
-  expenses: [],
+  expenses: {},
   error: null,
   expenseToEdit: null,
 };
 
 function expenseReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_EXPENSE:
+      return {
+        ...state,
+      };
+    case GET_EXPENSE_SUCCESS:
+      return {
+        ...state,
+        expenses: [...state.expenses, action.payload],
+      };
+    case GET_EXPENSE_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
     case ADD_EXPENSE:
       return {
         ...state,
