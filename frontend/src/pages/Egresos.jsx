@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import EditForm from "./EditForm";
-import ExpenseList from "./ExpenseList";
-import InputForm from "./InputForm";
+import Abm from "./Abm";
+import EditForm from "../components/EditForm";
+import ExpenseList from "../components/ExpenseList";
+import InputForm from "../components/InputForm";
 
 function Egresos() {
   const [editing, setEditing] = useState(false);
@@ -12,6 +13,7 @@ function Egresos() {
 
   return (
     <>
+      <Abm />
       <h2 align="center">Egresos</h2>
       <div className="ui text container">
         <InputForm expenseType="egreso" />

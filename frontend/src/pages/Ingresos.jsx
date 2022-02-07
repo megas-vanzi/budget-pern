@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import EditForm from "./EditForm";
-import ExpenseList from "./ExpenseList";
-import InputForm from "./InputForm";
-import Modal from "./Modal";
+import Abm from "./Abm";
+import EditForm from "../components/EditForm";
+import ExpenseList from "../components/ExpenseList";
+import InputForm from "../components/InputForm";
+import Modal from "../components/Modal";
 
 function Ingresos() {
   const [editing, setEditing] = useState(false);
@@ -15,6 +16,7 @@ function Ingresos() {
 
   return (
     <>
+      <Abm />
       <button className="clickMe"></button>
       <Modal show={modal} title="My Modal" />
       <h2 align="center">Ingresos</h2>

@@ -1,6 +1,6 @@
 import React from "react";
-import Balance from "./Balance";
-import LastTenList from "./LastTenList";
+import Balance from "../components/Balance";
+import LastTenList from "../components/LastTenList";
 
 function Home() {
   return (
