@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Abm from "./Abm";
-import EditForm from "../components/EditForm";
+import EditForm from "../components/forms/EditForm";
 import ExpenseList from "../components/ExpenseList";
-import InputForm from "../components/InputForm";
-import Modal from "../components/Modal";
+import InputForm from "../components/forms/InputForm";
+import Modal from "../components/modals/Modal";
 
 function Ingresos() {
   const [editing, setEditing] = useState(false);

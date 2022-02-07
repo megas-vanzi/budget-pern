@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Abm from "./Abm";
-import EditForm from "../components/EditForm";
+import EditForm from "../components/forms/EditForm";
 import ExpenseList from "../components/ExpenseList";
-import InputForm from "../components/InputForm";
+import InputForm from "../components/forms/InputForm";
 
 function Egresos() {
   const [editing, setEditing] = useState(false);

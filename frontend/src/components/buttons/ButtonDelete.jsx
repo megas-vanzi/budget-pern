@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button, Icon, Label } from "semantic-ui-react";
 // Redux
 import { useDispatch } from "react-redux";
-import { deleteExpenseAction } from "../redux/actions";
+import { deleteExpenseAction } from "../../redux/actions";
 
 const ButtonDelete = ({ id }) => {
   // Dispatch

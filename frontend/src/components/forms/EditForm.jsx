@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { editExpenseAction } from "../redux/actions";
+import { editExpenseAction } from "../../redux/actions";
 
 function EditForm() {
   const [expense, setExpense] = useState({

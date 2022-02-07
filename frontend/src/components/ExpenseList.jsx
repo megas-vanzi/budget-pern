@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ButtonEdit from "./ButtonEdit";
-import ButtonDelete from "./ButtonDelete";
+import ButtonEdit from "./buttons/ButtonEdit";
+import ButtonDelete from "./buttons/ButtonDelete";
 import { numberFormat } from "../helpers/numberFormat";
 import Axios from "axios";
 // Redux
