@@ -13,6 +13,9 @@ const Navbar = () => (
         </button>
       </div>
     </div>
+    <button>Login</button>
+    <button>Logout</button>
+    <button>Register</button>
   </nav>
 );
 
