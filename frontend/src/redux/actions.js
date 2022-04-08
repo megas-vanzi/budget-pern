@@ -1,5 +1,11 @@
 import Axios from "axios";
 
+export const AUTH_LOGIN_ACTION = "AUTH_LOGIN_ACTION";
+export const AUTH_LOGOUT_ACTION = "AUTH_LOGOUT_ACTION";
+export const AUTH_REGISTER_ACTION = "AUTH_REGISTER_ACTION";
+export const AUTH_ACTION_ERROR = "AUTH_ACTION_ERROR";
+export const AUTH_ACTION_SUCCESS = "AUTH_ACTION_SUCCESS";
+
 export const GET_EXPENSE = "GET_EXPENSE";
 export const GET_EXPENSE_SUCCESS = "GET_EXPENSE_SUCCESS";
 export const GET_EXPENSE_ERROR = "GET_EXPENSE_ERROR";
@@ -16,6 +22,71 @@ export const EDIT_EXPENSE_ERROR = "EDIT_EXPENSE_ERROR";
 export const DELETE_EXPENSE = "DELETE_EXPENSE";
 export const DELETE_EXPENSE_SUCCESS = "DELETE_EXPENSE_SUCCESS";
 export const DELETE_EXPENSE_ERROR = "DELETE_EXPENSE_ERROR";
+
+//auth
+export function loginAction(user) {
+  return async (dispatch) => {
+    dispatch(postLogin());
+    // dispacth LOADING?
+    try {
+      const data = await Axios.post(`http://localhost:4000/auth/login`, user);
+      dispatch(authActionSuccess(data));
+    } catch (error) {
+      dispatch(authActionError(true));
+    }
+  };
+}
+
+export function logoutAction() {
+  return async (dispatch) => {
+    dispatch(postLogout());
+    // dispacth LOADING?
+    try {
+      const data = await Axios.post(`http://localhost:4000/auth/logout`);
+      dispatch(authActionSuccess(data));
+    } catch (error) {
+      dispatch(authActionError(true));
+    }
+  };
+}
+
+export function registerAction(user) {
+  return async (dispatch) => {
+    dispatch(postRegister());
+    // dispacth LOADING?
+    try {
+      const data = await Axios.post(
+        `http://localhost:4000/auth/register`,
+        user
+      );
+      dispatch(authActionSuccess(data));
+    } catch (error) {
+      dispatch(authActionError(true));
+    }
+  };
+}
+
+const postLogin = () => ({
+  type: AUTH_LOGIN_ACTION,
+});
+
+const postLogout = () => ({
+  type: AUTH_LOGOUT_ACTION,
+});
+
+const postRegister = () => ({
+  type: AUTH_REGISTER_ACTION,
+});
+
+const authActionSuccess = (expense) => ({
+  type: GET_EXPENSE_SUCCESS,
+  payload: expense,
+});
+
+const authActionError = (errorState) => ({
+  type: GET_EXPENSE_ERROR,
+  payload: errorState,
+});
 
 //READ
 export function getExpenseAction(query) {

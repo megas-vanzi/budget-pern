@@ -1,4 +1,9 @@
 import {
+  AUTH_LOGIN_ACTION,
+  AUTH_LOGOUT_ACTION,
+  AUTH_REGISTER_ACTION,
+  AUTH_ACTION_ERROR,
+  AUTH_ACTION_SUCCESS,
   GET_EXPENSE,
   GET_EXPENSE_SUCCESS,
   GET_EXPENSE_ERROR,
@@ -15,13 +20,41 @@ import {
 } from "./actions";
 
 const initialState = {
+  auth: {},
   expenses: {},
-  error: null,
   expenseToEdit: null,
+  error: null,
+  message: null,
 };
 
 function expenseReducer(state = initialState, action) {
   switch (action.type) {
+    case AUTH_LOGIN_ACTION:
+      return {
+        ...state,
+      };
+    case AUTH_LOGOUT_ACTION:
+      return {
+        ...state,
+      };
+    case AUTH_REGISTER_ACTION:
+      return {
+        ...state,
+      };
+    case AUTH_ACTION_ERROR:
+      return {
+        ...state,
+        error: true,
+        message: action.payload,
+      };
+    case AUTH_ACTION_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        message: null,
+        auth: action.payload,
+      };
+
     case GET_EXPENSE:
       return {
         ...state,
